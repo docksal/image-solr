@@ -51,3 +51,6 @@ EXPOSE 8983
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["solr-foreground"]
+
+# Health check script
+HEALTHCHECK --interval=5s --timeout=1s --retries=12 CMD ["healthcheck.sh"]
