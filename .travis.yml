@@ -12,7 +12,7 @@ env:
     - SOLR_VER=3.6.2 TAGS=3.6,3
 
 script:
-  - make && make test
+  - cd ${SOLR_VER:0:1}.x && make
 
 after_success:
   - . "${TRAVIS_BUILD_DIR}/release.sh"
