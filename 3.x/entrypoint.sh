@@ -20,10 +20,6 @@ if [[ ! -f /opt/solr/server/solr/solr.xml ]]; then
     ln -s /opt/docker-solr/solr.xml /opt/solr/server/solr/solr.xml
 fi
 
-
-# <cores adminPath="/admin/cores" defaultCoreName="8.x-1.x_apache_solr">
-# <core name="8.x-1.x_apache_solr" instanceDir="configsets/8.x-1.x_apache_solr" />
-
 sed -i 's#defaultCoreName=".*">#defaultCoreName="'${SOLR_DEFAULT_CONFIG_SET}'">#g' /opt/docker-solr/solr.xml
 sed -i 's#<core name=".*" instanceDir=".*" />#<core name="'${SOLR_DEFAULT_CONFIG_SET}'" instanceDir="configsets/'${SOLR_DEFAULT_CONFIG_SET}'" />#g' /opt/docker-solr/solr.xml
 

@@ -3,7 +3,7 @@
 SOLR_VER ?= 3.6.2
 TAG ?= $(SOLR_VER)
 
-REPO = zabolotny/solr
+REPO = docksal/solr
 NAME = solr-$(SOLR_VER)
 
 BASE_IMAGE_TAG = $(SOLR_VER)-alpine
