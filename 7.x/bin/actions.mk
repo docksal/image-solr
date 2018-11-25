@@ -33,14 +33,12 @@ create:
 	$(call check_defined, core)
 	echo "Creating core $(core) from config set $(config_set)"
 	$(eval instance_dir ?= $(core))
-	curl -sIN "http://$(host):8983/solr/admin/cores?action=CREATE&name=$(core)&configSet=$(config_set)&instanceDir=$(instance_dir)"
 	curl -sIN "http://$(host):8983/solr/admin/cores?action=CREATE&name=$(core)&configSet=$(config_set)&instanceDir=$(instance_dir)" \
 		| head -n 1 | awk '{print $$2}' | grep -q 200
 
 delete:
 	echo "Deleting core $(core)"
 	$(call check_defined, core)
-	curl -sIN "http://$(host):8983/solr/admin/cores?action=UNLOAD&core=$(core)&deleteIndex=true&deleteDataDir=true&deleteInstanceDir=true"
 	curl -sIN "http://$(host):8983/solr/admin/cores?action=UNLOAD&core=$(core)&deleteIndex=true&deleteDataDir=true&deleteInstanceDir=true" \
 		| head -n 1 | awk '{print $$2}' | grep -q 200
 	rm -rf "/opt/solr/server/solr/$(core)"
@@ -48,14 +46,12 @@ delete:
 reload:
 	$(call check_defined, core)
 	echo "Reloading core $(core)"
-	curl -sIN "http://$(host):8983/solr/admin/cores?action=RELOAD&core=$(core)"
 	curl -sIN "http://$(host):8983/solr/admin/cores?action=RELOAD&core=$(core)" \
 		| head -n 1 | awk '{print $$2}' | grep -q 200
 
 ping:
 	$(call check_defined, core)
 	echo "Pinging core $(core)"
-	curl -sIN "http://$(host):8983/solr/$(core)/admin/ping"
 	curl -sIN "http://$(host):8983/solr/$(core)/admin/ping" \
 		| head -n 1 | awk '{print $$2}' | grep -q 200
 
