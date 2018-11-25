@@ -9,18 +9,20 @@ fi
 sudo init_volumes
 migrate
 
-# Symlinks config sets to volume.
-for configset in $(ls -d /opt/docker-solr/configsets/*); do
-    if [[ ! -d "/opt/solr/server/solr/configsets/${configset##*/}" ]]; then
-        ln -s "${configset}" /opt/solr/server/solr/configsets/;
-    fi
-done
+# Symlinks config set to volume.
+ln -s /opt/docker-solr/configsets/"${SOLR_DEFAULT_CONFIG_SET}" "${SOLR_HOME}"/configsets/default;
 
 if [[ ! -f /opt/solr/server/solr/solr.xml ]]; then
     ln -s /opt/docker-solr/solr.xml /opt/solr/server/solr/solr.xml
 fi
 
-touch /opt/solr/server/solr/configsets/"${SOLR_DEFAULT_CONFIG_SET}"/core.properties
+# use user own configs if exists
+if [[ -d /var/www/.docksal/etc/solr ]]; then
+    rm -f "${SOLR_HOME}"/configsets/default
+    ln -s /var/www/.docksal/etc/solr "${SOLR_HOME}"/configsets/default
+fi
+
+touch "${SOLR_HOME}"/configsets/default/conf/core.properties
 
 sudo sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' /opt/solr/bin/solr.in.sh
 
