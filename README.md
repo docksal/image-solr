@@ -42,18 +42,19 @@ Apart from the default config set, this image contains predefined config sets fo
 
 Matrix of Search API Solr x Solr version support.
 
-| Version  | Solr 7.x | Solr 6.x | Solr 5.x |
-| -------- | -------- | -------- | -------- |
-| 8.x-2.1  | ✓        | ✓        |          |
-| 8.x-2.0  | ✓        | ✓        |          |
-| 8.x-1.2  |          | ✓        | ✓        |
-| 8.x-1.1  |          | ✓        | ✓        |
-| 8.x-1.0  |          | ✓        | ✓        |
-| 7.x-1.12 |          |          | ✓        |
-| 7.x-1.11 |          |          | ✓        |
-| 7.x-1.10 |          |          | ✓        |
-| 7.x-1.8  |          |          | ✓        |
-| 7.x-1.9  |          |          | ✓        |
+| Version  | Solr 7.x | Solr 6.x | Solr 5.x | Solr 4.x | Solr 3.x |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 8.x-2.x  | ✓        | ✓        |          |          |          |
+| 8.x-1.x  |          | ✓        | ✓        | ✓        |          |
+| 7.x-1.x  | ✓        | ✓        | ✓        | ✓        | ✓        |
+
+Matrix of Apache Solr x Solr version support.
+
+| Version  | Solr 7.x | Solr 6.x | Solr 5.x | Solr 4.x | Solr 3.x |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 8.x-2.x  |          |          |          |          |          |
+| 8.x-1.x  |          |          |          | ✓        | ✓        |
+| 7.x-1.x  |          |          | ✓        | ✓        | ✓        |
 
 ## Orchestration actions
 
