@@ -17,12 +17,14 @@ if [[ ! -f /opt/solr/server/solr/solr.xml ]]; then
 fi
 
 # use user own configs if exists
-if [[ -d /var/www/.docksal/etc/solr ]]; then
-    rm -f "${SOLR_HOME}"/configsets/default
-    ln -s /var/www/.docksal/etc/solr "${SOLR_HOME}"/configsets/default
+if [[ -d /var/www/.docksal/etc/solr/conf ]]; then
+    rm -rf "${SOLR_HOME}"/configsets/default
+    mkdir -p /opt/docker-solr/configsets/default
+    cp -R /var/www/.docksal/etc/solr/conf /opt/docker-solr/configsets/default/
+    ln -s /opt/docker-solr/configsets/default "${SOLR_HOME}"/configsets/default
 fi
 
-touch "${SOLR_HOME}"/configsets/default/conf/core.properties
+touch "${SOLR_HOME}"/configsets/default/core.properties
 
 sudo sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' /opt/solr/bin/solr.in.sh
 

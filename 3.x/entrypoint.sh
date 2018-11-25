@@ -17,9 +17,11 @@ if [[ ! -f /opt/solr/server/solr/solr.xml ]]; then
 fi
 
 # use user own configs if exists
-if [[ -d /var/www/.docksal/etc/solr ]]; then
-    rm -f "${SOLR_HOME}"/configsets/default
-    ln -s /var/www/.docksal/etc/solr "${SOLR_HOME}"/configsets/default
+if [[ -d /var/www/.docksal/etc/solr/conf ]]; then
+    rm -rf "${SOLR_HOME}"/configsets/default
+    mkdir -p /opt/docker-solr/configsets/default
+    cp -R /var/www/.docksal/etc/solr/conf /opt/docker-solr/configsets/default/
+    ln -s /opt/docker-solr/configsets/default "${SOLR_HOME}"/configsets/default
 fi
 
 sed -i 's#defaultCoreName=".*">#defaultCoreName="default">#g' /opt/docker-solr/solr.xml
