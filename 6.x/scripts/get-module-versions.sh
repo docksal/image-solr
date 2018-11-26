@@ -20,7 +20,7 @@ do
       then
         echo "${module_name} ${version}: adding config set for ${SOLR_VER:0:1}.x"
 
-        conf_dir="configsets/${version}_${module_name}/conf"
+        conf_dir="configsets/${module_name}_${version}/conf"
         mkdir -p "${conf_dir}"
         cp "${dir}"/* "${conf_dir}"
       else

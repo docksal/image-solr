@@ -44,17 +44,29 @@ Matrix of Search API Solr x Solr version support.
 
 | Version  | Solr 7.x | Solr 6.x | Solr 5.x | Solr 4.x | Solr 3.x |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| 8.x-2.x  | ✓        | ✓        |          |          |          |
-| 8.x-1.x  |          | ✓        | ✓        | ✓        |          |
-| 7.x-1.x  | ✓        | ✓        | ✓        | ✓        | ✓        |
+| 8.x-2.0  | ✓        | ✓        |          |          |          |
+| 8.x-1.2  |          | ✓        | ✓        | ✓        |          |
+| 8.x-1.1  |          | ✓        | ✓        | ✓        |          |
+| 8.x-1.0  |          | ✓        | ✓        | ✓        |          |
+| 7.x-1.12 |          | ✓        | ✓        | ✓        | ✓        |
+| 7.x-1.11 |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.10 |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.9  |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.8  |          |          | ✓        | ✓        | ✓        |
+
+### Drupal Apache Solr
+
+Apart from the default config set, this image contains predefined config sets for Drupal from [Apache Solr](https://www.drupal.org/project/apachesolr) module. To set one of the following config sets as a default for new cores, add environment variable `$SOLR_DEFAULT_CONFIG_SET` with the value `apachesolr_[VERSION]` with `[VERSION]` replaced to one of the listed below, e.g. `apachesolr_7.x-1.11`.
 
 Matrix of Apache Solr x Solr version support.
 
 | Version  | Solr 7.x | Solr 6.x | Solr 5.x | Solr 4.x | Solr 3.x |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| 8.x-2.x  |          |          |          |          |          |
-| 8.x-1.x  |          |          |          | ✓        | ✓        |
-| 7.x-1.x  |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.11 |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.10 |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.9  |          |          | ✓        | ✓        | ✓        |
+| 7.x-1.8  |          |          |          | ✓        | ✓        |
+
 
 ## Orchestration actions
 
