@@ -6,7 +6,7 @@ ENV SOLR_HEAP="1024m" \
     SOLR_VER="${SOLR_VER}" \
     SOLR_MIRROR="http://archive.apache.org/dist/lucene/solr" \
     PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH" \
-    SOLR_DEFAULT_CONFIG_SET="7.x-1.x_apache_solr" \
+    SOLR_DEFAULT_CONFIG_SET="7.x-1.11_apachesolr" \
     SOLR_HOME="/opt/solr/server/solr"
 
 USER root

@@ -8,7 +8,7 @@ fi
 
 rm -rf configsets
 
-for module_name in "search_api_solr" "apache_solr"
+for module_name in "search_api_solr" "apachesolr"
 do
   for drupal in "8.x" "7.x"
   do

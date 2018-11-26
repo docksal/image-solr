@@ -22,7 +22,8 @@ build:
 	scripts/get-module-versions.sh; \
 	docker build -t $(REPO):$(TAG) \
 		--build-arg SOLR_VER=$(SOLR_VER) \
-		./
+		./; \
+	rm -rf configsets
 
 test:
 	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ./run.sh
