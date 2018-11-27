@@ -11,8 +11,18 @@ env:
     - SOLR_VER=4.10.4 TAGS=4.10,4
     - SOLR_VER=3.6.2 TAGS=3.6,3
 
+install:
+  - curl -fsSL get.docksal.io | bash
+  - fin version
+  - fin sysinfo
+
 script:
-  - cd ${SOLR_VER:0:1}.x && make
+  - cd ${SOLR_VER:0:1}.x
+  - make
+  - make test
 
 after_success:
   - . "${TRAVIS_BUILD_DIR}/release.sh"
+
+after_failure:
+  - make logs

@@ -27,7 +27,7 @@ build:
 	rm -rf configsets bin
 
 test:
-	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ./run.sh
+	IMAGE=$(REPO):$(TAG) NAME=$(NAME) ../tests/test.bats
 
 push:
 	docker push $(REPO):$(TAG)
