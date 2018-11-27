@@ -7,7 +7,6 @@ if [[ -n "${DEBUG}" ]]; then
 fi
 
 sudo init_volumes
-migrate
 
 # Symlinks config set to volume.
 ln -s /opt/docker-solr/configsets/"${SOLR_DEFAULT_CONFIG_SET}" "${SOLR_HOME}"/configsets/default;
@@ -24,13 +23,11 @@ if [[ -d /var/www/.docksal/etc/solr/conf ]]; then
     ln -s /opt/docker-solr/configsets/default "${SOLR_HOME}"/configsets/default
 fi
 
+# set default core
 touch "${SOLR_HOME}"/configsets/default/core.properties
 
 sudo sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' /opt/solr/bin/solr.in.sh
 
-if [[ "${1}" == 'make' ]]; then
-    exec "$@" -f /usr/local/bin/actions.mk
-else
-    exec docker-entrypoint.sh "$@"
-fi
+exec "$@"
+
 

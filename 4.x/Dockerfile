@@ -12,7 +12,6 @@ ENV SOLR_HEAP="1024m" \
 USER root
 
 COPY bin /usr/local/bin
-COPY scripts /opt/docker-solr/scripts
 COPY entrypoint.sh /
 COPY configsets /opt/docker-solr/configsets
 

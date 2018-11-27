@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+# Set default solr port if not defined
+if [[ -v SOLR_PORT ]] && ! grep -E -q '^[0-9]+$' <<<"${SOLR_PORT:-}"; then
+  SOLR_PORT=8983
+  export SOLR_PORT
+fi
+
+echo "Starting Solr $SOLR_VERSION"
+
+# use old start method for solr 3.x
+if [[ "${SOLR_VER:0:1}" = "3" ]];
+then
+    cd /opt/solr/example/
+    java -Dsolr.solr.home=${SOLR_HOME} -jar start.jar
+fi
+
+exec solr -f

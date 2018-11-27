@@ -19,11 +19,12 @@ endif
 default: build
 
 build:
-	scripts/get-module-versions.sh; \
+	cp -R ../bin bin; \
+	bin/get-module-versions.sh; \
 	docker build -t $(REPO):$(TAG) \
 		--build-arg SOLR_VER=$(SOLR_VER) \
 		./; \
-	rm -rf configsets
+	rm -rf configsets bin
 
 test:
 	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ./run.sh

@@ -5,14 +5,13 @@ ARG SOLR_VER
 ENV SOLR_HEAP="1024m" \
     SOLR_VER="${SOLR_VER}" \
     SOLR_MIRROR="http://archive.apache.org/dist/lucene/solr" \
-    PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH" \
+    PATH="/opt/solr/bin:$PATH" \
     SOLR_DEFAULT_CONFIG_SET="search_api_solr_8.x-2.0" \
     SOLR_HOME="/opt/solr/server/solr"
 
 USER root
 
 COPY bin /usr/local/bin
-COPY scripts /opt/docker-solr/scripts
 COPY entrypoint.sh /
 COPY configsets /opt/docker-solr/configsets
 

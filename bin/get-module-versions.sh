@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Search supported versions of drupal modules
 
 set -e
 
