@@ -53,3 +53,9 @@ Matrix of Apache Solr x Solr version support.
 | 7.x-1.9  |          |          | ✓        | ✓        | ✓        |
 | 7.x-1.8  |          |          |          | ✓        | ✓        |
 
+## Configuration overrides
+
+Configuration overrides can be added to a Docksal project codebase.
+
+Put configuration files into `.docksal/etc/solr/conf` to override the predefined configuration
+
