@@ -7,9 +7,9 @@
 
 Supported tags and respective `Dockerfile` links:
 
-* `7.5`, `7`, `latest` [_(Dockerfile)_](https://github.com/sergey-zabolotny/service-solr/blob/master/7.x/Dockerfile)
-* `6.6`, `6` [_(Dockerfile)_](https://github.com/sergey-zabolotny/service-solr/blob/master/6.x/Dockerfile)
-* `5.5`, `5` [_(Dockerfile)_](https://github.com/sergey-zabolotny/service-solr/blob/master/5.x/Dockerfile)
+* `7.5`, `7`, `latest`
+* `6.6`, `6`
+* `5.5`, `5`
 
 ## Environment Variables
 
