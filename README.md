@@ -7,9 +7,9 @@
 
 Supported tags and respective `Dockerfile` links:
 
-* `7.5`, `7`, `latest`
-* `6.6`, `6`
-* `5.5`, `5`
+* `7.5.0`, `7.5`, `7`, `latest`
+* `6.6.5`, `6.6`, `6`
+* `5.5.5`, `5.5`, `5`
 
 ## Environment Variables
 
