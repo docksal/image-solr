@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# use user own configs if exists
+if [[ -d /var/www/.docksal/etc/solr/conf ]]; then
+    SOLR_DEFAULT_CONFIG_SET="user-owned"
+    CONFIG_SET_PATH="/opt/docker-solr/configsets/${SOLR_DEFAULT_CONFIG_SET}"
+    mkdir -p "${CONFIG_SET_PATH}"
+    cp -R "/var/www/.docksal/etc/solr/conf" "${CONFIG_SET_PATH}"
+else
+    if [[ ! -d "/opt/docker-solr/configsets/${SOLR_DEFAULT_CONFIG_SET}" ]]
+    then
+	echo "Config set ${SOLR_DEFAULT_CONFIG_SET} not supported by Solr ${VERSION}"
+	exit 1
+    else
+	CONFIG_SET_PATH="/opt/docker-solr/configsets/${SOLR_DEFAULT_CONFIG_SET}"
+    fi
+fi
+
+# Remove old symlinks
+find -L ${SOLR_HOME} -type l -delete
+
+# Symlinks config set to volume.
+ln -sf "${CONFIG_SET_PATH}/" "${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}";
+
+# set default core
+touch "${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}/core.properties"
+
+sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' /opt/solr/bin/solr.in.sh

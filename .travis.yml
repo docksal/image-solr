@@ -1,0 +1,23 @@
+dist: xenial
+
+language: minimal
+
+env:
+  global:
+    - REPO=docksal/solr
+
+env:
+  matrix:
+    - VERSION=7.5.0 SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=7.5,7,latest
+    - VERSION=6.6.5 SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=6.6,6
+    - VERSION=5.5.5 SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-1.2 TAGS=5.5,5
+
+script:
+  - make
+  - make test
+
+after_success:
+  - . "${TRAVIS_BUILD_DIR}/scripts/release.sh"
+
+after_failure:
+  - make logs
