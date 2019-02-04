@@ -1,16 +1,16 @@
 #!/usr/bin/env bats
 
 # Debugging
-teardown() {
-    echo
-    # TODO: figure out how to deal with this (output from previous run commands showing up along with the error message)
-    echo "Note: ignore the lines between \"...failed\" above and here"
-    echo
-    echo "Status: $status"
-    echo "Output:"
-    echo "================================================================"
-    echo "$output"
-    echo "================================================================"
+teardown () {
+	echo
+	# TODO: figure out how to deal with this (output from previous run commands showing up along with the error message)
+	echo "Note: ignore the lines between \"...failed\" above and here"
+	echo
+	echo "Status: $status"
+	echo "Output:"
+	echo "================================================================"
+	echo "$output"
+	echo "================================================================"
 }
 
 # Checks container health status (if available)
@@ -65,15 +65,10 @@ _healthcheck_wait ()
 #SKIP=1
 
 @test "Bare server" {
-    [[ $SKIP == 1 ]] && skip
+	[[ $SKIP == 1 ]] && skip
 
-    ### Setup ###
-    fin docker rm -vf "$NAME" >/dev/null 2>&1 || true
-    fin docker run --name "$NAME" -d \
-	"$IMAGE"
-    _healthcheck_wait
+	### Setup ###
+	make start
+	_healthcheck_wait
 
-    ### Cleanup ###
-    fin docker rm -vf "$NAME" >/dev/null 2>&1 || true
 }
-
