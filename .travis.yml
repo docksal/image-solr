@@ -17,7 +17,7 @@ script:
   - make test
 
 after_success:
-  - . "${TRAVIS_BUILD_DIR}/scripts/release.sh"
+  - "${TRAVIS_BUILD_DIR}/scripts/release.sh"
 
 after_failure:
   - make logs
