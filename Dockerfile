@@ -15,10 +15,16 @@ COPY scripts/healthcheck.sh /opt/docker-solr/scripts/healthcheck.sh
 COPY scripts/docksal-preinit /opt/docker-solr/scripts/docksal-preinit
 
 RUN set -xe; \
+	apt-get update && \
+	apt-get -y install sudo; \
+	echo "solr ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/solr; \
+	rm -rf /var/lib/apt/lists/*
+
+RUN set -xe; \
 	ln -s /opt/solr/dist /opt/dist; \
 	ln -s /opt/solr/contrib /opt/contrib; \
 	sed -i '/exec "$@"/i . docksal-preinit' /opt/docker-solr/scripts/docker-entrypoint.sh; \
-	chown -R solr:solr /opt/docker-solr
+	chown -R solr:solr /opt/docker-solr /opt/solr/server/solr
 
 USER solr
 

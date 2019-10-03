@@ -1,12 +1,12 @@
 -include env_make
 
-VERSION ?= 7.5.0
-FROM ?= solr:7.5.0-alpine
+VERSION ?= 8.1.1
+FROM ?= solr:8.1.1-slim
 TAG ?= $(VERSION)
 
 REPO ?= docksal/solr
 NAME = docksal-solr-$(VERSION)
-SOLR_DEFAULT_CONFIG_SET ?= search_api_solr_8.x-2.0
+SOLR_DEFAULT_CONFIG_SET ?= search_api_solr_8.x-3.0
 
 ifneq ($(STABILITY_TAG),)
 	ifneq ($(TAG),latest)
@@ -17,7 +17,8 @@ endif
 .PHONY: build test push shell run start stop logs clean release
 
 build:
-	VERSION=$(VERSION) scripts/download_configsets.sh
+	git checkout -- configsets
+	VERSION=$(VERSION) scripts/prepare_configsets.sh
 	docker build -t $(REPO):$(TAG) --build-arg FROM=$(FROM) --build-arg VERSION=$(VERSION) --build-arg SOLR_DEFAULT_CONFIG_SET=$(SOLR_DEFAULT_CONFIG_SET) .
 
 test:

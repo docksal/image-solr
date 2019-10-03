@@ -17,12 +17,17 @@ else
 fi
 
 # Remove old symlinks
-find -L ${SOLR_HOME} -type l -delete
+find ${SOLR_HOME}/configsets/ -type l -delete
 
 # Symlinks config set to volume.
-ln -sf "${CONFIG_SET_PATH}/" "${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}";
+ln -sf "${CONFIG_SET_PATH}" "${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}";
 
 # set default core
 touch "${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}/core.properties"
 
-sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' /opt/solr/bin/solr.in.sh
+# Comment out solr.install.dir param in solrcore.properties
+sed -i 's/^solr.install.dir=/#solr.install.dir=/' ${SOLR_HOME}/configsets/${SOLR_DEFAULT_CONFIG_SET}/conf/solrcore.properties 
+
+[[ -n "$SOLR_INCLUDE" ]] || SOLR_INCLUDE="/opt/solr/bin/solr.in.sh"
+
+sudo sed -i 's@^SOLR_HEAP=".*"@'"SOLR_HEAP=${SOLR_HEAP}"'@' $SOLR_INCLUDE

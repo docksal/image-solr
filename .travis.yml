@@ -7,9 +7,11 @@ env:
     - REPO=docksal/solr
 
   matrix:
-    - VERSION=5.5.5 FROM=solr:5.5.5-alpine SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-1.2 TAGS=5.5,5
-    - VERSION=6.6.5 FROM=solr:6.6.5-alpine SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=6.6,6
-    - VERSION=7.5.0 FROM=solr:7.5.0-alpine SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=7.5,7,latest
+    - VERSION=5.5.5 FROM=solr:5.5.5-slim SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-1.2 TAGS=5.5,5
+    - VERSION=6.6.5 FROM=solr:6.6.5-slim SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=6.6,6
+    - VERSION=7.5.0 FROM=solr:7.5.0-slim SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=7.5
+    - VERSION=7.7.1 FROM=solr:7.7.1-slim SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-2.0 TAGS=7.7,7
+    - VERSION=8.1.1 FROM=solr:8.1.1-slim SOLR_DEFAULT_CONFIG_SET=search_api_solr_8.x-3.0 TAGS=8.1,8,latest
 
 install:
   # Install Docksal to have a matching versions of Docker on the build host
